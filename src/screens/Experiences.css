@@ -1,0 +1,49 @@
+.exp__head {
+  padding: 12px 0 20px;
+}
+.exp__title {
+  font-size: 34px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 6px 0 0;
+}
+
+.exp__list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.expcard {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.expcard:active {
+  transform: scale(0.99);
+}
+.expcard__art {
+  width: 100%;
+  height: 150px;
+  display: block;
+}
+.expcard__body {
+  padding: 16px 20px 20px;
+}
+.expcard__title {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.expcard__meta {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.expcard__meta--soft {
+  color: var(--muted);
+}

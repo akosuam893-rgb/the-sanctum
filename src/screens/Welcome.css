@@ -1,0 +1,66 @@
+.welcome {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 34px 46px;
+  background:
+    radial-gradient(140% 80% at 50% 12%, #f4efe7 0%, #ece3d7 60%, #e2d6c6 100%);
+}
+
+.welcome__arch {
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 470px;
+  border: 1px solid rgba(169, 139, 93, 0.35);
+  border-bottom: none;
+  border-radius: 125px 125px 0 0;
+  pointer-events: none;
+}
+
+.welcome__center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4px;
+  padding-top: 30px;
+}
+
+.welcome__title {
+  margin: 26px 0 20px;
+  font-size: 52px;
+  line-height: 0.98;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.welcome__tag {
+  line-height: 1.9;
+  letter-spacing: 0.3em;
+}
+
+.welcome__star {
+  margin-top: 34px;
+  color: var(--gold);
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+.welcome__actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.welcome__member {
+  padding: 4px;
+}
