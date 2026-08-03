@@ -1,17 +1,9 @@
-.concierge {
-  padding-bottom: 100px;
-}
-
-.concierge__bar {
-  padding: 8px 16px 10px;
-}
-
 .concierge__hero {
-  margin: 0 20px;
-  height: 210px;
+  height: 200px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
+  margin-top: 6px;
 }
 .concierge__img {
   width: 100%;
@@ -19,19 +11,19 @@
 }
 
 .concierge__pad {
-  padding: 22px 26px 0;
+  padding: 20px 2px 0;
 }
 
 .concierge__title {
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 500;
   color: var(--ink);
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   line-height: 1;
 }
 
 .concierge__sub {
-  font-size: 19px;
+  font-size: 18px;
   color: var(--ink-soft);
   line-height: 1.35;
   margin: 0;
@@ -42,7 +34,7 @@
   position: relative;
   height: 1px;
   background: var(--line);
-  margin: 24px 0;
+  margin: 22px 0;
 }
 .rule__star {
   position: absolute;
@@ -60,7 +52,7 @@
   line-height: 1.7;
   color: var(--ink-soft);
   font-weight: 300;
-  margin: 0 0 22px;
+  margin: 0 0 20px;
 }
 
 .services {
@@ -71,7 +63,6 @@
   flex-direction: column;
   gap: 12px;
 }
-
 .service {
   display: flex;
   align-items: center;
@@ -80,6 +71,7 @@
   background: var(--surface);
   border: 1px solid rgba(217, 207, 192, 0.6);
   border-radius: var(--radius-md);
+  cursor: pointer;
   transition: background 0.2s ease;
 }
 .service:active {
@@ -104,11 +96,34 @@
   color: var(--muted);
 }
 
-.concierge__foot {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 16px 24px 30px;
-  background: linear-gradient(to bottom, rgba(239, 233, 224, 0) 0%, var(--cream) 30%);
+/* Request history cards */
+.req {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.req__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.req__cat {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.req__detail {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+.req__date {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
 }

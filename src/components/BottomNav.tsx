@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import { Home, Sparkle, Bell, Arch, User } from './Icons'
+import { Home, Bag, Sparkle, Bell, User } from './Icons'
 
 const items = [
   { to: '/home', label: 'Home', Icon: Home },
+  { to: '/shop', label: 'Shop', Icon: Bag },
   { to: '/experiences', label: 'Experiences', Icon: Sparkle },
   { to: '/concierge', label: 'Concierge', Icon: Bell },
-  { to: '/sanctuary', label: 'Sanctuary', Icon: Arch },
   { to: '/profile', label: 'Profile', Icon: User },
 ]
 

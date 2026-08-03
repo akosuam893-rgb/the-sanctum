@@ -2,34 +2,46 @@ import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
 import BottomNav from '../components/BottomNav'
 import StillLife from '../components/StillLife'
-import { Bell, Sparkle, Leaf, Bag } from '../components/Icons'
+import { Bell, Sparkle, Bookmark, Bag } from '../components/Icons'
+import { useApp } from '../store/AppContext'
+import { EXPERIENCES, PRODUCTS, experienceById } from '../store/catalog'
 import './Home.css'
-
-const actions = [
-  { label: 'Concierge', Icon: Bell, to: '/concierge' },
-  { label: 'Experiences', Icon: Sparkle, to: '/experiences' },
-  { label: 'Wellness', Icon: Leaf, to: '/experiences' },
-  { label: 'Shop', Icon: Bag, to: '/sanctuary' },
-]
 
 export default function Home() {
   const nav = useNavigate()
+  const { currentUser, cartCount, state } = useApp()
+
+  const firstName = currentUser?.name.split(' ')[0] || 'Member'
+  const hour = new Date().getHours()
+  const greeting = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening'
+
+  const nextRsvp = state.rsvps.map(experienceById).find(Boolean) ?? EXPERIENCES[0]
+  const featured = PRODUCTS[1]
+
+  const actions = [
+    { label: 'Concierge', Icon: Bell, to: '/concierge' },
+    { label: 'Experiences', Icon: Sparkle, to: '/experiences' },
+    { label: 'Saved', Icon: Bookmark, to: '/saved' },
+    { label: 'Shop', Icon: Bag, to: '/shop' },
+  ]
+
   return (
     <>
       <StatusBar />
       <div className="screen screen--pad home">
         <header className="home__head">
           <h1 className="home__greeting serif">
-            Good Morning,
+            {greeting},
             <br />
-            Member <span className="home__spark">✦</span>
+            {firstName} <span className="home__spark">✦</span>
           </h1>
-          <button className="home__avatar" aria-label="Profile" onClick={() => nav('/profile')}>
-            S
+          <button className="home__avatar" aria-label="Cart" onClick={() => nav('/cart')}>
+            <Bag />
+            {cartCount > 0 && <em className="home__avatarbadge">{cartCount}</em>}
           </button>
         </header>
 
-        <section className="hero">
+        <section className="hero" onClick={() => nav('/shop')}>
           <div className="hero__text">
             <span className="eyebrow">Your Sanctum</span>
             <p className="hero__line serif">
@@ -55,32 +67,41 @@ export default function Home() {
         </nav>
 
         <section className="block">
-          <span className="eyebrow block__label">Upcoming</span>
-          <article className="feature">
+          <div className="block__row">
+            <span className="eyebrow block__label">
+              {state.rsvps.length ? 'Your next experience' : 'Upcoming'}
+            </span>
+            <button className="block__link" onClick={() => nav('/experiences')}>
+              All
+            </button>
+          </div>
+          <article className="feature" onClick={() => nav('/experiences')}>
             <div className="feature__body">
-              <h3 className="feature__title serif">Private Dinner</h3>
-              <p className="feature__meta">Tonight, 7:00 PM</p>
-              <p className="feature__meta feature__meta--soft">The Sanctum Lounge</p>
-              <button className="pill" onClick={() => nav('/experiences')}>
-                View
-              </button>
+              <h3 className="feature__title serif">{nextRsvp.title}</h3>
+              <p className="feature__meta">{nextRsvp.when}</p>
+              <p className="feature__meta feature__meta--soft">{nextRsvp.where}</p>
+              <span className="pill" style={{ pointerEvents: 'none' }}>
+                {state.rsvps.includes(nextRsvp.id) ? 'Reserved' : 'View'}
+              </span>
             </div>
-            <StillLife variant="dinner" className="feature__art" />
+            <StillLife variant={nextRsvp.art} className="feature__art" />
           </article>
         </section>
 
         <section className="block">
-          <span className="eyebrow block__label">Featured</span>
-          <article className="feature feature--tall" onClick={() => nav('/sanctuary')}>
+          <div className="block__row">
+            <span className="eyebrow block__label">Featured</span>
+            <button className="block__link" onClick={() => nav('/shop')}>
+              Shop all
+            </button>
+          </div>
+          <article className="feature feature--tall" onClick={() => nav(`/shop/${featured.id}`)}>
             <div className="feature__body">
-              <h3 className="feature__title serif">New in Sanctuary</h3>
-              <p className="feature__meta feature__meta--soft">
-                Thoughtfully chosen pieces.
-                <br />
-                Beautifully yours.
-              </p>
+              <h3 className="feature__title serif">{featured.name}</h3>
+              <p className="feature__meta feature__meta--soft">{featured.tagline}</p>
+              <span className="feature__price serif">${featured.price}</span>
             </div>
-            <StillLife variant="sanctuary" className="feature__art" />
+            <StillLife variant={featured.art} className="feature__art" />
           </article>
         </section>
       </div>

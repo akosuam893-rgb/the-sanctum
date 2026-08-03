@@ -29,10 +29,10 @@ export default function Welcome() {
         </div>
 
         <div className="welcome__actions">
-          <button className="btn-primary" onClick={() => nav('/home')}>
+          <button className="btn-primary" onClick={() => nav('/auth?mode=signup')}>
             Join the Sanctum
           </button>
-          <button className="welcome__member" onClick={() => nav('/home')}>
+          <button className="welcome__member" onClick={() => nav('/auth?mode=login')}>
             <span className="btn-ghost">I am a member</span>
           </button>
         </div>
