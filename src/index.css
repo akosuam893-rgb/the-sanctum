@@ -1,0 +1,311 @@
+:root {
+  /* Palette — quiet luxury, warm neutrals */
+  --cream: #efe9e0;
+  --cream-deep: #e9e1d6;
+  --sand: #e5dbcd;
+  --surface: #ece4d8;
+  --surface-2: #e2d7c7;
+  --blush: #cba492;
+  --blush-deep: #bf9482;
+  --blush-soft: #dcc3b7;
+  --ink: #423b31;
+  --ink-soft: #6f6558;
+  --muted: #948a7c;
+  --line: #d9cfc0;
+  --gold: #a98b5d;
+  --rose-accent: #b47f6e;
+  --white-warm: #f6f1e9;
+
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+
+  --shadow-soft: 0 18px 40px -24px rgba(66, 59, 49, 0.45);
+  --shadow-card: 0 12px 30px -20px rgba(66, 59, 49, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background:
+    radial-gradient(120% 90% at 50% 0%, #f0e9df 0%, #e3dacd 55%, #d8cdbd 100%);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utility text styles */
+.eyebrow {
+  font-family: var(--sans);
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.serif {
+  font-family: var(--serif);
+}
+
+/* ---------- App stage ---------- */
+.stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  gap: 40px;
+}
+
+.stage__intro {
+  max-width: 300px;
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .stage__intro {
+    display: block;
+  }
+}
+
+.stage__intro h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1.05;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+.stage__intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+
+.stage__intro .eyebrow {
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* ---------- Phone frame ---------- */
+.phone {
+  position: relative;
+  width: 380px;
+  max-width: 100%;
+  height: 800px;
+  max-height: calc(100vh - 48px);
+  aspect-ratio: 380 / 800;
+  background: var(--cream);
+  border-radius: 48px;
+  padding: 12px;
+  box-shadow:
+    0 40px 80px -40px rgba(50, 44, 36, 0.7),
+    0 2px 0 0 rgba(255, 255, 255, 0.5) inset;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.phone__screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 38px;
+  overflow: hidden;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Status bar */
+.statusbar {
+  position: relative;
+  z-index: 5;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 26px 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.statusbar__icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Scrollable content region */
+.screen {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.screen::-webkit-scrollbar {
+  display: none;
+}
+
+.screen--pad {
+  padding: 6px 24px 28px;
+}
+
+/* Home indicator */
+.home-indicator {
+  position: absolute;
+  bottom: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 128px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(66, 59, 49, 0.8);
+  z-index: 20;
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 17px;
+  border-radius: 40px;
+  background: var(--blush);
+  color: var(--white-warm);
+  font-family: var(--sans);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: transform 0.15s ease, background 0.2s ease;
+  box-shadow: var(--shadow-card);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+  background: var(--blush-deep);
+}
+
+.btn-ghost {
+  display: inline-block;
+  font-family: var(--sans);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--ink-soft);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--blush);
+}
+
+/* ---------- Bottom nav ---------- */
+.bottomnav {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 14px 12px 26px;
+  background: linear-gradient(to bottom, rgba(246, 241, 233, 0) 0%, var(--white-warm) 34%);
+  border-top: 1px solid rgba(217, 207, 192, 0.6);
+}
+
+.navitem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  transition: color 0.2s ease;
+  flex: 1;
+}
+.navitem svg {
+  width: 22px;
+  height: 22px;
+}
+.navitem.is-active {
+  color: var(--blush-deep);
+}
+
+/* ---------- Screen header (with back) ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px 14px;
+}
+.topbar__title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.iconbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--ink);
+  transition: background 0.2s ease;
+}
+.iconbtn:active {
+  background: rgba(203, 164, 146, 0.18);
+}
+.iconbtn--badge {
+  position: relative;
+}
+.iconbtn--badge span {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--blush);
+  color: var(--white-warm);
+  font-size: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
